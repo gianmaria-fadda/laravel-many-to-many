@@ -30,6 +30,9 @@
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('admin.types.index') }}">Tipi</a>
                                 </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('admin.technoloies.index') }}">Tecnologie</a>
+                                </li>
                             @else
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('login') }}">Login</a>

@@ -37,7 +37,6 @@
                                 <tr>
                                     <th scope="row">{{ $type->id }}</th>
                                     <td>{{ $type->title }}</td>
-                                    <td>{{ $type->content }}</td>
                                     <td>
                                         <a href="{{ route('admin.types.show', ['type' => $type->id]) }}" class="btn btn-primary btn-sm">
                                             Vedi

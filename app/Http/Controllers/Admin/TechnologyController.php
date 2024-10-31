@@ -14,9 +14,9 @@ class technologyController extends Controller
      */
     public function index()
     {
-        $technologys = technology::all();
+        $technologies = technology::all();
 
-        return view('admin.technologys.index', compact('technologys'));
+        return view('admin.technologies.index', compact('technologies'));
     }
 
     /**
@@ -24,7 +24,7 @@ class technologyController extends Controller
      */
     public function create()
     {
-        return view('admin.technologys.create');
+        return view('admin.technologies.create');
     }
 
     /**
@@ -42,7 +42,7 @@ class technologyController extends Controller
 
         $technology = technology::create($data);
 
-        return redirect()->route('admin.technologys.show', ['technology' => $technology->id]);
+        return redirect()->route('admin.technologies.show', ['technology' => $technology->id]);
     }
 
     /**
@@ -50,7 +50,7 @@ class technologyController extends Controller
      */
     public function show(technology $technology)
     {
-        return view('admin.technologys.show', compact('technology'));
+        return view('admin.technologies.show', compact('technology'));
     }
 
     /**
@@ -58,7 +58,7 @@ class technologyController extends Controller
      */
     public function edit(technology $technology)
     {
-        return view('admin.technologys.edit', compact('technology'));
+        return view('admin.technologies.edit', compact('technology'));
     }
 
     /**
@@ -76,7 +76,7 @@ class technologyController extends Controller
 
         $technology->update($data);
 
-        return redirect()->route('admin.technologys.show', ['technology' => $technology->id]);
+        return redirect()->route('admin.technologies.show', ['technology' => $technology->id]);
     }
 
     /**
@@ -86,6 +86,6 @@ class technologyController extends Controller
     {
         $technology->delete();
 
-        return redirect()->route('admin.technologys.index');
+        return redirect()->route('admin.technologies.index');
     }
 }

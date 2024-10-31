@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('page-title', 'Laravel Boolfolio - Project Technology')
+@section('page-title', 'Laravel Boolfolio - technology Technology')
 
 @section('main-content')
     <div class="row">
@@ -16,7 +16,7 @@
     </div>
     <div class="row">
         <div class="col">
-            <a href="{{ route('admin.projects.create') }}" class="btn btn-success w-100">
+            <a href="{{ route('admin.technologys.create') }}" class="btn btn-success w-100">
                 + Aggiungi
             </a>
         </div>
@@ -30,33 +30,31 @@
                           <tr>
                             <th scope="col">#</th>
                             <th scope="col">Titolo</th>
-                            <th scope="col">Tipo</th>
-                            <th scope="col">Contenuto</th>
                             <th scope="col"></th>
                           </tr>
                         </thead>
                         <tbody>
-                            @foreach ($projects as $project)
+                            @foreach ($technologys as $technology)
                                 <tr>
-                                    <th scope="row">{{ $project->id }}</th>
-                                    <td class="text-center">{{ $project->title }}</td>
+                                    <th scope="row">{{ $technology->id }}</th>
+                                    <td class="text-center">{{ $technology->title }}</td>
                                     <td class="text-center">
-                                        @if (isset($project->type))
-                                            <a href="{{ route('admin.types.show', ['type' => $project->type_id]) }}"></a>
-                                                {{ $project->type->title }}
+                                        @if (isset($technology->type))
+                                            <a href="{{ route('admin.types.show', ['type' => $technology->type_id]) }}"></a>
+                                                {{ $technology->type->title }}
                                         @else
                                             -
                                         @endif
                                     </td>
-                                    <td class="text-center">{{ $project->content }}</td>
+                                    <td class="text-center">{{ $technology->content }}</td>
                                     <td class="text-center">
-                                        <a href="{{ route('admin.projects.show', ['project' => $project->id]) }}" class="btn btn-primary btn-sm">
+                                        <a href="{{ route('admin.technologys.show', ['technology' => $technology->id]) }}" class="btn btn-primary btn-sm">
                                             Vedi
                                         </a>
-                                        <a href="{{ route('admin.projects.edit', ['project' => $project->id]) }}" class="btn btn-warning btn-sm">
+                                        <a href="{{ route('admin.technologys.edit', ['technology' => $technology->id]) }}" class="btn btn-warning btn-sm">
                                             Modifica
                                         </a>
-                                        <form action="{{ route('admin.projects.destroy', ['project' => $project->id]) }}" method="post" class="d-inline-block"
+                                        <form action="{{ route('admin.technologys.destroy', ['technology' => $technology->id]) }}" method="post" class="d-inline-block"
                                             onsubmit="return confirm('Sei sicur* di voler cancellare Definitivamente il tuo Progetto???')">
                                             @csrf
                                             @method('DELETE')

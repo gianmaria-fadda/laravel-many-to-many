@@ -21,11 +21,12 @@ class ProjectSeeder extends Seeder
         $randomTypeId = null;
         if (rand(0, 1)) {
             $randomType = Type::inRandomOrder()->first();
-            $randomTypeId = $randomType->id;
+            $randomTypeId = $randomType ? $randomType->id : null;
         }
 
+
         for ($i=0; $i < 50; $i++) {
-            $title = fake()->sentence();
+            $title = fake()->words(3, true);
             Project::create([
                 'title' => $title,
                 'slug' => str()->slug($title),
