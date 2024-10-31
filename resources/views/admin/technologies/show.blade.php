@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('page-title', $project->title)
+@section('page-title', $technology->title)
 
 @section('main-content')
     <div class="row">
@@ -8,20 +8,14 @@
             <div class="card">
                 <div class="card-body">
                     <h1 class="text-center text-success">
-                        {{ $project->title }}
+                        {{ $technology->title }}
                     </h1>
                     <h6 class="text-center">
-                        Creato il: {{ $project->created_at }}
+                        Creato il: {{ $technology->created_at }}
                     </h6>
                     <ul>
                         <li>
-                            ID: {{ $project->id }}
-                        </li>
-                        <li>
-                            Slug: {{ $project->slug }}
-                        </li>
-                        <li>
-                            Contenuto: {{ $project->content }}
+                            ID: {{ $technology->id }}
                         </li>
                     </ul>
                 </div>

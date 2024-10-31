@@ -23,6 +23,13 @@
                         <li>
                             Contenuto: {{ $project->content }}
                         </li>
+                        <li>
+                            Tecnologie: 
+                                @foreach ($project->technologies as $technology)
+                                    <a href="{{ route('admin.technologies.show', ['technology' => $technology->id]) }}" class="badge rounded-pill text-bg-primary"></a>
+                                        {{ $technology->title }}
+                                @endforeach
+                        </li>
                     </ul>
                 </div>
             </div>

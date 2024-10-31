@@ -31,6 +31,7 @@
                             <th scope="col">#</th>
                             <th scope="col">Titolo</th>
                             <th scope="col">Tipo</th>
+                            <th scope="col">Tecnologie</th>
                             <th scope="col">Contenuto</th>
                             <th scope="col"></th>
                           </tr>
@@ -47,6 +48,12 @@
                                         @else
                                             -
                                         @endif
+                                    </td>
+                                    <td class="text-center">
+                                        @foreach ($project->technologies as $technology)
+                                            <a href="{{ route('admin.technologies.show', ['technology' => $technology->id]) }}" class="badge rounded-pill text-bg-primary"></a>
+                                                {{ $technology->title }}
+                                        @endforeach
                                     </td>
                                     <td class="text-center">{{ $project->content }}</td>
                                     <td class="text-center">

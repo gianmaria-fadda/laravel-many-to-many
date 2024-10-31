@@ -39,9 +39,9 @@
                                     <th scope="row">{{ $technology->id }}</th>
                                     <td class="text-center">{{ $technology->title }}</td>
                                     <td class="text-center">
-                                        @if (isset($technology->type))
-                                            <a href="{{ route('admin.types.show', ['type' => $technology->type_id]) }}"></a>
-                                                {{ $technology->type->title }}
+                                        @if (isset($technology->technology))
+                                            <a href="{{ route('admin.technologie.show', ['technology' => $technology->technology_id]) }}"></a>
+                                                {{ $technology->technology->title }}
                                         @else
                                             -
                                         @endif
@@ -51,17 +51,6 @@
                                         <a href="{{ route('admin.technologys.show', ['technology' => $technology->id]) }}" class="btn btn-primary btn-sm">
                                             Vedi
                                         </a>
-                                        <a href="{{ route('admin.technologys.edit', ['technology' => $technology->id]) }}" class="btn btn-warning btn-sm">
-                                            Modifica
-                                        </a>
-                                        <form action="{{ route('admin.technologys.destroy', ['technology' => $technology->id]) }}" method="post" class="d-inline-block"
-                                            onsubmit="return confirm('Sei sicur* di voler cancellare Definitivamente il tuo Progetto???')">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-danger btn-sm">
-                                                Elimina
-                                            </button>
-                                        </form>
                                     </td>
                                 </tr>
                             @endforeach
