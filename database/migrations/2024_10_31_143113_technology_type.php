@@ -12,17 +12,19 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('technology_type', function (Blueprint $table) {
-            $table->foreignId('type_id')
-                  ->nullable()
-                  ->constrained('types')
-                  ->onDelete('cascade')
-                  ->onUpdate('cascade');
+            $table->unsignedBigInteger('type_id');
+            $table->foreign('type_id')
+                  ->references('id')
+                  ->on('type')
+                  ->onUpdate('cascade')
+                  ->onDelete('cascade');
 
-            $table->foreignId('technology_id')
-                ->nullable()
-                ->constrained('technologys')
-                ->onDelete('cascade')
-                ->onUpdate('cascade');
+                  $table->unsignedBigInteger('technology_id');
+                  $table->foreign('technology_id')
+                        ->references('id')
+                        ->on('technology')
+                        ->onUpdate('cascade')
+                        ->onDelete('cascade');
 
             $table->primary([
                 'type_id',
@@ -36,6 +38,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExist('technology_type');
+        Schema::dropIfExists('technology_type');
     }
+
 };
