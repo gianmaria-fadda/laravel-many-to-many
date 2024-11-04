@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 
 use App\Http\Controllers\Controller;
 
+use Illuminate\Support\Facades\Storage;
+
 class ProjectController extends Controller
 {
     /**
@@ -35,10 +37,13 @@ class ProjectController extends Controller
         $data = $request->validate([
             'title' => 'required|min:3|max:255',
             'content' => 'required|min:3|max:255',
+            'cover' => 'nullable|image|max:2048',
             'type_id' => 'nullable|exist:categories,id',
         ]);
 
         $data['slug'] = str()->slug($data['title']);
+
+        $imgPath = Storage::put('uploads', $data['cover']);
 
         $project = Project::create($data);
 
