@@ -2,19 +2,19 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\technology;
 use Illuminate\Http\Request;
-
 use App\Http\Controllers\Controller;
 
-class technologyController extends Controller
+use App\Models\Technology;
+
+class TechnologyController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $technologies = technology::all();
+        $technologies = Technology::get();
 
         return view('admin.technologies.index', compact('technologies'));
     }
@@ -34,13 +34,11 @@ class technologyController extends Controller
     {
         $data = $request->validate([
             'title' => 'required|min:3|max:255',
-            'content' => 'required|min:3|max:255',
-            'type_id' => 'nullable|exist:categories,id',
         ]);
 
         $data['slug'] = str()->slug($data['title']);
 
-        $technology = technology::create($data);
+        $technology = Technology::create($data);
 
         return redirect()->route('admin.technologies.show', ['technology' => $technology->id]);
     }
@@ -48,7 +46,7 @@ class technologyController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(technology $technology)
+    public function show(Technology $technology)
     {
         return view('admin.technologies.show', compact('technology'));
     }
@@ -56,7 +54,7 @@ class technologyController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(technology $technology)
+    public function edit(Technology $technology)
     {
         return view('admin.technologies.edit', compact('technology'));
     }
@@ -64,12 +62,10 @@ class technologyController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, technology $technology)
+    public function update(Request $request, Technology $technology)
     {
-        
         $data = $request->validate([
-            'title' => 'required|min:3|max:255',
-            'content' => 'required|min:3|max:255'
+            'title' => 'required|min:3|max:255'
         ]);
 
         $data['slug'] = str()->slug($data['title']);
@@ -82,7 +78,7 @@ class technologyController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(technology $technology)
+    public function destroy(Technology $technology)
     {
         $technology->delete();
 

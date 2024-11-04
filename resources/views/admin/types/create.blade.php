@@ -44,11 +44,9 @@
                             <textarea class="form-control" name="content" id="content" rows="3" required minlength="3" maxlength="4096" placeholder="Inserisci qui il tuo Contenuto..."></textarea>
                           </div>
 
-                          <label for="cover" class="form-label">Cover <span class="text-danger">*</span></label>
-                          <input type="file" class="form-control" name="cover" id="cover" required minlength="3" maxlength="255">
-                          
+                        
                         <div>
-                            <button type="submit" class="btn btn-success w-100 mt-2">
+                            <button type="submit" class="btn btn-success w-100">
                                 + Aggiungi
                             </button>
                         </div>

@@ -15,8 +15,9 @@ class TechnologySeeder extends Seeder
         Schema::enableForeignKeyConstraints();
 
         for ($i = 0; $i < 10; $i++) { 
+            $title = fake()->words(3, true);
             Technology::create([
-                'title' => fake()->words(rand(1, 3), true),
+                'title' => $title,
             ]);
         }
     }
