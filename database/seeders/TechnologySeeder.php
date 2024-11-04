@@ -2,28 +2,22 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-
 use Illuminate\Support\Facades\Schema;
+use App\Models\Technology;
 
-use App\Models\Technoloy;
-
-class TechnoloySeeder extends Seeder
+class TechnologySeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
     public function run(): void
     {
-        Schema::disableForeignKeyConstraints(function() {
-            Technoloy::truncate();
-        });
+        Schema::disableForeignKeyConstraints();
+        Technology::truncate();
+        Schema::enableForeignKeyConstraints();
 
-        for ($i=0; $i < 10; $i++) { 
-            Technoloy::create([
-                'title' => fake()->words(rand(1,3), true)
-            ])
+        for ($i = 0; $i < 10; $i++) { 
+            Technology::create([
+                'title' => fake()->words(rand(1, 3), true),
+            ]);
         }
     }
 }
