@@ -31,7 +31,7 @@
         <div class="col">
             <div class="card">
                 <div class="card-body">
-                    <form action="{{ route('admin.projects.update', ['project' => $project->id]) }}" method="POST">
+                    <form action="{{ route('admin.projects.update', ['project' => $project->id]) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
 
@@ -45,7 +45,28 @@
                             <textarea class="form-control" name="content" id="content" rows="3" required minlength="3" maxlength="4096" value="{{ old('title', $project->content) }}" placeholder="Inserisci qui il tuo Contenuto..."></textarea>
                           </div>
 
-                        
+                          <div class="mb-3">
+                            <label for="cover" class="form-label">Cover</label>
+                            <input type="file" class="form-control" name="cover" id="cover" placeholder="Inserisci qui l'Immagine della tua Copertina...">
+                          
+                            @if ($project->cover)
+                                <div class="mt-2">
+                                    <h5>
+                                        Copertina Attuale:
+                                    </h5>
+                                    <img src="{{ asset("/storage/".$project->cover) }}" alt="{{ $project->title }}" class="card-img-bottom" style="height: 150px;">
+
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="1" id="remove-cover" name="remove-cover">
+                                        <label class="form-check-label" for="remove_cover">
+                                            Rimuovi l'attuale Copertina
+                                        </label>
+                                      </div>
+                                </div>
+                            @endif
+
+                          </div>
+
                         <div>
                             <button type="submit" class="btn btn-success w-100">
                                 + Aggiungi

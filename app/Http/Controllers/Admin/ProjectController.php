@@ -78,10 +78,25 @@ class ProjectController extends Controller
         
         $data = $request->validate([
             'title' => 'required|min:3|max:255',
-            'content' => 'required|min:3|max:255'
+            'content' => 'required|min:3|max:255',
+            'cover' => 'nullable|image|max:2048',
+            'remove_cover' => 'nullable',
         ]);
 
         $data['slug'] = str()->slug($data['title']);
+
+        if (isset($data['cover'])) {
+            if ($project->cover) {
+                Storage::delete($project->cover);
+                $project->cover = null;
+            }
+            $coverPath = Storage::put('uploads', $data['cover']);
+            $data['cover'] = $coverPath;
+        }
+        else if (isset($data['remove_cover']) && $project->cover) {
+            Storage::delete($project->cover);
+            $project->cover = null;
+        }
 
         $project->update($data);
 
