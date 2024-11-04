@@ -23,6 +23,12 @@
                         <li>
                             Contenuto: {{ $project->content }}
                         </li>
+                        <li>
+                            Cover:
+                            @if ($project->cover)
+                                <img src="{{ asset("/storage/".$project->cover) }}" alt="{{ $project->title }}" class="card-img-bottom">
+                            @endif
+                        </li>
                     </ul>
                 </div>
             </div>

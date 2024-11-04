@@ -43,7 +43,11 @@ class ProjectController extends Controller
 
         $data['slug'] = str()->slug($data['title']);
 
-        $imgPath = Storage::put('uploads', $data['cover']);
+        if (isset($data['cover'])) {
+            $coverPath = Storage::put('uploads', $data['cover']);
+            $data['cover'] = $coverPath;
+        }
+        
 
         $project = Project::create($data);
 
